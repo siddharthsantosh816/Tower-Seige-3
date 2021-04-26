@@ -150,11 +150,17 @@ function draw() {
 }
 
 async function getTime(){
-    
-    var response=await fetch("https://worldtimeapi.org/api/timezone/Asia/kolkata");
-    var responseJSON=await response.json();
-    console.log(response);
-    var hour =responseJSON.datetime.slice(11,13);
+	var option = Math.round(random(0,1));
+	console.log(option);
+	if (option === 0) {
+		var d = new Date();
+		var hour = d.getHours();
+	} else {
+        var response=await fetch("https://worldtimeapi.org/api/timezone/Asia/kolkata");
+		var responseJSON=await response.json();
+		console.log(response);
+		var hour =responseJSON.datetime.slice(11,13);
+	}
     console.log(hour);
 
     if(hour>=6 && hour<=18){
@@ -164,6 +170,4 @@ async function getTime(){
         backgroundImg=loadImage("sprites/bg2.jpg");
 
     }
-    
-
 }
